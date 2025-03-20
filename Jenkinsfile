@@ -31,15 +31,4 @@ pipeline {
         }
     }
 
-    post {
-        always {
-            echo 'Cleaning up after execution'
-        }
-        success {
-            echo 'Tests executed successfully'
-        }
-        failure {
-            echo 'Tests failed! Check the logs.'
-        }
-    }
-}
+    
