@@ -3,14 +3,17 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Building the Selenium project...'
+                echo 'Building the project...'
             }
         }
-        stage('Run Selenium Tests') {
+        stage('Test') {
             steps {
-                dir('selenium-tests') {  // Change 'selenium-tests' to your actual test folder
-                    sh 'python test_script.py'
-                }
+                echo 'Running tests...'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying application...'
             }
         }
     }
