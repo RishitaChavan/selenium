@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/Killer29907/expt-7.git'
+                git branch: 'main', url: 'https://github.com/RishitaChavan/selenium.git'
             }
         }
 
