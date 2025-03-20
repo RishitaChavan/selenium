@@ -4,7 +4,7 @@ pipeline {
     parameters {
         string(name: 'testUrl', defaultValue: 'https://youtube.com', description: 'Enter the URL for testing')
         choice(name: 'browser', choices: ['chrome', 'firefox'], description: 'Select the browser for testing')
-        string(name: 'driversPath', defaultValue: 'C:\Users\rishi\Downloads\path_to_web_drivers', description: 'Path to WebDriver executables')
+        string(name: 'driversPath', defaultValue: 'C:\\Users\\rishi\\Downloads\\path_to_web_drivers', description: 'Path to WebDriver executables')
     }
 
     stages {
