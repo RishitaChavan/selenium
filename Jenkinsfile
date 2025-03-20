@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                git 'https://github.com/your-username/new-selenium.git'
+                git 'https://github.com/your-username/selenium.git'
             }
         }
         stage('Install Dependencies') {
