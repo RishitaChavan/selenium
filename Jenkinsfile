@@ -1,20 +1,45 @@
 pipeline {
     agent any
+
+    parameters {
+        string(name: 'testUrl', defaultValue: 'https://youtube.com', description: 'Enter the URL for testing')
+        choice(name: 'browser', choices: ['chrome', 'firefox'], description: 'Select the browser for testing')
+        string(name: 'driversPath', defaultValue: 'C:\Users\rishi\Downloads\path_to_web_drivers', description: 'Path to WebDriver executables')
+    }
+
     stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/Killer29907/expt-7.git'
+            }
+        }
+
         stage('Build') {
             steps {
-                echo 'Building the project...'
+                dir('selenium-tests') {
+                    bat 'mvn clean package -DdriversPath=%driversPath%'
+                }
             }
         }
+
         stage('Test') {
             steps {
-                echo 'Running tests...'
+                dir('selenium-tests') {
+                    bat "mvn test -DtestUrl=${params.testUrl} -Dbrowser=${params.browser} -Ddrivers=${params.driversPath}"
+                }
             }
         }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying application...'
-            }
+    }
+
+    post {
+        always {
+            echo 'Cleaning up after execution'
+        }
+        success {
+            echo 'Tests executed successfully'
+        }
+        failure {
+            echo 'Tests failed! Check the logs.'
         }
     }
 }
