@@ -1,19 +1,16 @@
 pipeline {
     agent any
     stages {
-        stage('Checkout Code') {
+        stage('Build') {
             steps {
-                git 'https://github.com/RishitaChavan/selenium.git'
-            }
-        }
-        stage('Install Dependencies') {
-            steps {
-                sh 'pip install -r requirements.txt'
+                echo 'Building the Selenium project...'
             }
         }
         stage('Run Selenium Tests') {
             steps {
-                sh 'python test_script.py'
+                dir('selenium-tests') {  // Change 'selenium-tests' to your actual test folder
+                    sh 'python test_script.py'
+                }
             }
         }
     }
